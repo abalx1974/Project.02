@@ -1,0 +1,303 @@
+object Form1: TForm1
+  Left = 320
+  Height = 504
+  Top = 21
+  Width = 1110
+  Caption = 'Проект 02'
+  ClientHeight = 484
+  ClientWidth = 1110
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object frPreview1: TfrPreview
+    Left = 16
+    Height = 378
+    Top = 8
+    Width = 947
+    BevelOuter = bvLowered
+    Caption = 'frPreview1'
+    TabOrder = 0
+    OnClick = frPreview1Click
+    ScrollBars = ssBoth
+  end
+  object Label1: TLabel
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 18
+    Top = 464
+    Width = 34
+    Align = alCustom
+    Anchors = [akTop, akLeft, akBottom]
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 2
+    BorderSpacing.Bottom = 2
+    Caption = 'Label1'
+    ParentColor = False
+    Visible = False
+    OnClick = Label1Click
+  end
+  object Label2: TLabel
+    Left = 112
+    Height = 15
+    Top = 464
+    Width = 34
+    Caption = 'Label2'
+    ParentColor = False
+  end
+  object MainMenu1: TMainMenu
+    left = 296
+    top = 392
+    object MenuItem1: TMenuItem
+      Caption = 'Звіти по пульту'
+      OnClick = MenuItem1Click
+      object MenuItem3: TMenuItem
+        Caption = 'Відключені об`єкти що на зв`язку'
+        OnClick = MenuItem3Click
+      end
+      object MenuItem17: TMenuItem
+        Caption = 'Всі відключені об`екти'
+        OnClick = MenuItem17Click
+      end
+      object MenuItem15: TMenuItem
+        Caption = 'Діючі об`єкти на GSM/GPRS'
+        OnClick = MenuItem15Click
+      end
+      object MenuItem16: TMenuItem
+        Caption = 'Діючі об`єкти автодозвон'
+        OnClick = MenuItem16Click
+      end
+      object MenuItem44: TMenuItem
+        Caption = 'Діючі об`єкти на МТС'
+        OnClick = MenuItem44Click
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Звіти по відповідальним'
+      object MenuItem4: TMenuItem
+        Caption = 'Кушнір Е.В.'
+        OnClick = MenuItem4Click
+        object MenuItem18: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem18Click
+        end
+        object MenuItem36: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem36Click
+        end
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'Гуцалюк С.В.'
+        object MenuItem19: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem19Click
+        end
+        object MenuItem35: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem35Click
+        end
+      end
+      object MenuItem6: TMenuItem
+        Caption = 'Віт О.В.'
+        object MenuItem20: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem20Click
+        end
+        object MenuItem34: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem34Click
+        end
+      end
+      object MenuItem7: TMenuItem
+        Caption = 'Гудима В.О.'
+        object MenuItem21: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem21Click
+        end
+        object MenuItem33: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem33Click
+        end
+      end
+      object MenuItem8: TMenuItem
+        Caption = 'Лозінський І.І.'
+        object MenuItem22: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem22Click
+        end
+        object MenuItem32: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem32Click
+        end
+      end
+      object MenuItem9: TMenuItem
+        Caption = 'Федорчук Д.М.'
+        object MenuItem23: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem23Click
+        end
+        object MenuItem28: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem28Click
+        end
+      end
+      object MenuItem10: TMenuItem
+        Caption = 'Кармаліта Р.М.'
+        object MenuItem24: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem24Click
+        end
+        object MenuItem29: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem29Click
+        end
+      end
+      object MenuItem11: TMenuItem
+        Caption = 'Бабій В.Я.'
+        object MenuItem25: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem25Click
+        end
+        object MenuItem30: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem30Click
+        end
+      end
+      object MenuItem12: TMenuItem
+        Caption = 'Доля О.В.'
+        object MenuItem26: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem26Click
+        end
+        object MenuItem31: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem31Click
+        end
+      end
+      object MenuItem13: TMenuItem
+        Caption = 'Квасовський О.І.'
+        object MenuItem27: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem27Click
+        end
+        object MenuItem37: TMenuItem
+          Caption = 'Об`єкти повний перелік'
+          OnClick = MenuItem37Click
+        end
+      end
+      object MenuItem38: TMenuItem
+        Caption = 'Михайлица С.О.'
+        object MenuItem39: TMenuItem
+          Caption = 'Об''екти автодозвон'
+          OnClick = MenuItem39Click
+        end
+        object MenuItem40: TMenuItem
+          Caption = 'Об''екти повний перелік '
+          OnClick = MenuItem40Click
+        end
+      end
+      object MenuItem41: TMenuItem
+        Caption = 'Нижній К.А.'
+        object MenuItem42: TMenuItem
+          Caption = 'Об`екти автодозвон'
+          OnClick = MenuItem42Click
+        end
+        object MenuItem43: TMenuItem
+          Caption = 'Об`єкти повний перелік '
+          OnClick = MenuItem43Click
+        end
+      end
+    end
+    object MenuItem45: TMenuItem
+      Caption = 'Звіти по ТО'
+      OnClick = MenuItem45Click
+      object MenuItem46: TMenuItem
+        Caption = 'Техн. обслуг. ТОВ *Пожежне спостереження-Хмельницький*  *  706519'
+        OnClick = MenuItem46Click
+      end
+      object MenuItem47: TMenuItem
+        Caption = 'Техн. обслуг. ПП *ХМЕЛЬНИЦКПОЖСЕРВІС -Дяченко*'
+        OnClick = MenuItem47Click
+      end
+      object MenuItem48: TMenuItem
+        Caption = 'Техн. обслуг.  ВАТ ЕК *Хмельницькобленерго*  *  78-78-67, 78-78-68'
+        OnClick = MenuItem48Click
+      end
+      object MenuItem49: TMenuItem
+        Caption = 'Техн. обслуг. ТОВ * Спецпожгазмонтаж*  *  665053'
+        OnClick = MenuItem49Click
+      end
+    end
+    object MenuItem14: TMenuItem
+      Caption = 'Вихід'
+      OnClick = MenuItem14Click
+    end
+  end
+  object IBConnection1: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    AfterConnect = IBConnection1AfterConnect
+    KeepConnection = True
+    Password = 'masterkey'
+    Transaction = SQLTransaction1
+    UserName = 'sysdba'
+    CharSet = 'UTF8'
+    Options = []
+    left = 16
+    top = 392
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <>
+    Database = IBConnection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'SELECT a.OBJUIN, a.OBJN, a.GRPN, a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1,a.CONTRACT1,a.LOCATION1, a.NOTES1,a.LASTEVTIME1,a.LASTTESTTIME1,a.GSMPHONE'
+      'FROM OBJECTS a WHERE POSITION(''ОТКЛЮЧИТЬ'',a.OBJSHORTNAME1) = 0 and  POSITION(:obslug,a.LOCATION1) > 0 ORDER BY a.OBJN;'
+    )
+    InsertSQL.Strings = (
+      ''
+    )
+    RefreshSQL.Strings = (
+      ''
+    )
+    Options = []
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'obslug'
+        ParamType = ptInput
+      end>
+    left = 56
+    top = 392
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Database = IBConnection1
+    Options = []
+    left = 96
+    top = 392
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 136
+    top = 392
+  end
+  object frDBDataSet1: TfrDBDataSet
+    DataSet = SQLQuery1
+    left = 176
+    top = 392
+  end
+  object frHTMExport1: TfrHTMExport
+    left = 216
+    top = 392
+  end
+  object frReport1: TfrReport
+    Dataset = frDBDataSet1
+    InitialZoom = pzDefault
+    Options = []
+    PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    DataType = dtDataSet
+    Title = 'Cross-tab report demo'
+    left = 256
+    top = 392
+  end
+end

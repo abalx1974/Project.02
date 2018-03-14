@@ -1,0 +1,58 @@
+unit Unit2;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+
+type
+
+  { TForm2 }
+
+  TForm2 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Edit1: TEdit;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+    Str2 : string;
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.lfm}
+
+{ TForm2 }
+
+procedure TForm2.Button2Click(Sender: TObject);
+{Выход и окна}
+begin
+  Form2.Close;
+end;
+
+procedure TForm2.Button1Click(Sender: TObject);
+{Поиск строки убираем пробелы лидирующие и завершающие}
+
+begin
+  Form2.str2:=Edit1.Text;
+  Form2.Close;
+
+end;
+
+procedure TForm2.Edit1Change(Sender: TObject);
+begin
+
+end;
+
+end.
+

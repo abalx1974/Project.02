@@ -1,0 +1,36 @@
+object Form2: TForm2
+  Left = 342
+  Height = 95
+  Top = 245
+  Width = 602
+  Caption = 'Form2'
+  ClientHeight = 95
+  ClientWidth = 602
+  LCLVersion = '1.6.4.0'
+  object Edit1: TEdit
+    Left = 16
+    Height = 23
+    Top = 16
+    Width = 568
+    OnChange = Edit1Change
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 16
+    Height = 25
+    Top = 56
+    Width = 75
+    Caption = 'Пошук'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 509
+    Height = 25
+    Top = 56
+    Width = 75
+    Caption = 'Відміна'
+    OnClick = Button2Click
+    TabOrder = 2
+  end
+end

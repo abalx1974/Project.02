@@ -1,0 +1,584 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+{$IFDEF FPC}
+  {$MODESWITCH CLASSICPROCVARS ON}
+{$ENDIF}
+
+
+interface
+
+uses
+  Classes, SysUtils, IBConnection, sqldb, db, FileUtil, LR_DBSet, LR_E_HTM,
+  LR_Class, LR_View, lrAddFunctionLibrary, Forms, Controls, Graphics, Dialogs,
+  Menus, ComCtrls, StdCtrls,INIFiles,lconvencoding;
+
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    DataSource1: TDataSource;
+    frDBDataSet1: TfrDBDataSet;
+    frHTMExport1: TfrHTMExport;
+    frPreview1: TfrPreview;
+    frReport1: TfrReport;
+    IBConnection1: TIBConnection;
+    Label1: TLabel;
+    Label2: TLabel;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    MenuItem13: TMenuItem;
+    MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
+    MenuItem17: TMenuItem;
+    MenuItem18: TMenuItem;
+    MenuItem19: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem20: TMenuItem;
+    MenuItem21: TMenuItem;
+    MenuItem22: TMenuItem;
+    MenuItem23: TMenuItem;
+    MenuItem24: TMenuItem;
+    MenuItem25: TMenuItem;
+    MenuItem26: TMenuItem;
+    MenuItem27: TMenuItem;
+    MenuItem28: TMenuItem;
+    MenuItem29: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem30: TMenuItem;
+    MenuItem31: TMenuItem;
+    MenuItem32: TMenuItem;
+    MenuItem33: TMenuItem;
+    MenuItem34: TMenuItem;
+    MenuItem35: TMenuItem;
+    MenuItem36: TMenuItem;
+    MenuItem37: TMenuItem;
+    MenuItem38: TMenuItem;
+    MenuItem39: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem40: TMenuItem;
+    MenuItem41: TMenuItem;
+    MenuItem42: TMenuItem;
+    MenuItem43: TMenuItem;
+    MenuItem44: TMenuItem;
+    MenuItem45: TMenuItem;
+    MenuItem46: TMenuItem;
+    MenuItem47: TMenuItem;
+    MenuItem48: TMenuItem;
+    MenuItem49: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
+    SQLQuery1: TSQLQuery;
+    SQLTransaction1: TSQLTransaction;
+    procedure FormCreate(Sender: TObject);
+    procedure frPreview1Click(Sender: TObject);
+    procedure IBConnection1AfterConnect(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
+    procedure MenuItem14Click(Sender: TObject);
+    procedure MenuItem15Click(Sender: TObject);
+    procedure MenuItem16Click(Sender: TObject);
+    procedure MenuItem17Click(Sender: TObject);
+    procedure MenuItem18Click(Sender: TObject);
+    procedure MenuItem19Click(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem20Click(Sender: TObject);
+    procedure MenuItem21Click(Sender: TObject);
+    procedure MenuItem22Click(Sender: TObject);
+    procedure MenuItem23Click(Sender: TObject);
+    procedure MenuItem24Click(Sender: TObject);
+    procedure MenuItem25Click(Sender: TObject);
+    procedure MenuItem26Click(Sender: TObject);
+    procedure MenuItem27Click(Sender: TObject);
+    procedure MenuItem28Click(Sender: TObject);
+    procedure MenuItem29Click(Sender: TObject);
+    procedure MenuItem30Click(Sender: TObject);
+    procedure MenuItem31Click(Sender: TObject);
+    procedure MenuItem32Click(Sender: TObject);
+    procedure MenuItem33Click(Sender: TObject);
+    procedure MenuItem34Click(Sender: TObject);
+    procedure MenuItem35Click(Sender: TObject);
+    procedure MenuItem36Click(Sender: TObject);
+    procedure MenuItem37Click(Sender: TObject);
+    procedure MenuItem39Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
+    procedure MenuItem40Click(Sender: TObject);
+    procedure MenuItem42Click(Sender: TObject);
+    procedure MenuItem43Click(Sender: TObject);
+    procedure MenuItem44Click(Sender: TObject);
+    procedure MenuItem45Click(Sender: TObject);
+    procedure MenuItem47Click(Sender: TObject);
+    procedure MenuItem48Click(Sender: TObject);
+    procedure MenuItem49Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItem46Click(Sender: TObject);
+  private
+    { private declarations }
+    procedure AVDObject();
+    procedure AllObject();
+    procedure ObslugaObject();
+  public
+    { public declarations }
+    Obsluga:      string;
+    Osoba:        string;
+    filename:     string;
+    zaprdate:     string;
+
+
+  end;
+
+
+
+
+var
+  Form1: TForm1;
+
+
+implementation
+
+{$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.AVDObject();
+begin
+    SQLQuery1.Close;
+    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND character_length(GSMPHONE)=0 AND OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
+    SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
+    SQLQuery1.Open;
+
+    frReport1.LoadFromFile('proba3.lrf');
+    frReport1.ShowReport;
+    if frReport1.PrepareReport then
+      frReport1.ExportTo(TfrHTMExportFilter, 'avtodozvon.html');
+    IBConnection1.Close;
+    IBConnection1.Open;
+end;
+procedure TForm1.AllObject();
+begin
+    SQLQuery1.Close;
+    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
+    SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
+    SQLQuery1.Open;
+
+    frReport1.LoadFromFile('proba4.lrf');
+    frReport1.ShowReport;
+    if frReport1.PrepareReport then
+      frReport1.ExportTo(TfrHTMExportFilter,Form1.filename);
+    IBConnection1.Close;
+    IBConnection1.Open;
+
+end;
+procedure TForm1.ObslugaObject();
+begin
+    SQLQuery1.Close;
+    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1,a.NOTES1, a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.NOTES1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
+    SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
+    SQLQuery1.Open;
+    frReport1.LoadFromFile('proba7.lrf');
+    frReport1.ShowReport;
+    if frReport1.PrepareReport then
+      frReport1.ExportTo(TfrHTMExportFilter,Form1.filename);
+    IBConnection1.Close;
+    IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.MenuItem20Click(Sender: TObject);
+{Объекты автодозвон Віт}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Віт';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem21Click(Sender: TObject);
+{Объекты автодозвон Гудима}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Гудима';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem22Click(Sender: TObject);
+{Объекты автодозвон Лозінський}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Лозінський';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem23Click(Sender: TObject);
+{Объекты автодозвон Федорчук}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Федорчук';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem24Click(Sender: TObject);
+{Объекты автодозвон Кармаліта}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Кармаліта';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem25Click(Sender: TObject);
+{Объекты автодозвон Бабій}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Бабій';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem26Click(Sender: TObject);
+{Объекты автодозвон Доля}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Доля';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem27Click(Sender: TObject);
+{Объекты автодозвон Квасовський}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Квасовський';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem28Click(Sender: TObject);
+{Федорчук всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Федорчук';
+  Form1.filename:='fedorchuk.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem29Click(Sender: TObject);
+{Кармаліта всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Кармаліта';
+  Form1.filename:='karmalita.html';
+  Form1.AllObject();
+
+end;
+
+procedure TForm1.MenuItem14Click(Sender: TObject);
+begin
+  Halt(0);
+end;
+
+procedure TForm1.MenuItem15Click(Sender: TObject);
+{Действующие объекты GSM/GPRS}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  {Form1.obsluga:='РЕМОНТ';}
+  SQLQuery1.Close;
+  SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND character_length(a.GSMPHONE) > 0 ORDER BY a.OBJN';
+  SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+  SQLQuery1.Open;
+
+  frReport1.LoadFromFile('proba2.lrf');
+  frReport1.ShowReport;
+  if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'gsmobjects.html');
+  IBConnection1.Close;
+  IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem16Click(Sender: TObject);
+{Всі Діючі об`екти автодозвон}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem17Click(Sender: TObject);
+{Всі відключені об`екти}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.zaprdate:='now';
+  SQLQuery1.Close;
+  SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) > 0 ORDER BY a.LASTTESTTIME1 DESC';
+  SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+  {SQLQuery1.ParamByName('zaprdate').AsString:=Form1.zaprdate;}
+  SQLQuery1.Open;
+
+  frReport1.LoadFromFile('proba5.lrf');
+  frReport1.ShowReport;
+  if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'otkl_total.html');
+  IBConnection1.Close;
+  IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem18Click(Sender: TObject);
+{Объекты автодозвон Кушнир}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Кушнір';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem19Click(Sender: TObject);
+{Объекты автодозвон Гуцалюк}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Гуцалюк';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.IBConnection1AfterConnect(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Label1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.frPreview1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+    IniF : TINIFile;
+    host_address : string;
+    database_name : string;
+
+begin
+     if FileExists(ExtractFilePath(ParamStr(0))+'project02.ini') then begin
+       Inif :=TINIFile.Create(ExtractFilePath(ParamStr(0))+'project02.ini');
+       host_address:=Inif.ReadString('most_host','host_address','localhost');
+       database_name:=Inif.ReadString('most_host','database_name','most5');
+     end else begin
+       Inif := TINIFile.Create(ExtractFilePath(ParamStr(0))+'project02.ini');
+       Inif.WriteString('most_host','host_address','10.10.11.2');
+       host_address:='10.10.11.12';
+       Inif.WriteString('most_host','database_name','most5');
+       database_name:='most5';
+
+     end;
+       Inif.Free;
+
+       IBConnection1.DatabaseName:=database_name;
+       IBConnection1.HostName:=host_address;
+       IBConnection1.Connected:=false;
+       Label1.Caption:=host_address;
+       Label1.Visible:=true;
+       Label2.Caption:=database_name;
+       Label2.Visible:=true;
+
+end;
+
+procedure TForm1.MenuItem46Click(Sender: TObject);
+{Техн. обслуг. ТОВ *Пожежне спостереження-Хмельницький*  *  706519}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='ТОВ *Пожежне спостереження-Хмельницький*';
+  Form1.filename:='to_pshm.html';
+  Form1.ObslugaObject();
+end;
+
+
+procedure TForm1.MenuItem30Click(Sender: TObject);
+{Бабій всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Бабій';
+  Form1.filename:='babij.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem31Click(Sender: TObject);
+{Доля всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Доля';
+  Form1.filename:='dolya.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem32Click(Sender: TObject);
+{Лозинський всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Лозінський';
+  Form1.filename:='lozinski.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem33Click(Sender: TObject);
+{Гудима всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Гудима';
+  Form1.filename:='gudima.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem34Click(Sender: TObject);
+{Віт всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Віт';
+  Form1.filename:='gudima.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem35Click(Sender: TObject);
+{Гуцалюк всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Гуцалюк';
+  Form1.filename:='guzaluk.html';
+  Form1.AllObject();
+
+end;
+
+procedure TForm1.MenuItem36Click(Sender: TObject);
+{Кушнір всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Кушнір';
+  Form1.filename:='kushir.html';
+  Form1.AllObject();
+
+end;
+
+procedure TForm1.MenuItem37Click(Sender: TObject);
+{Квасовський всі об`єкти}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Квасовський';
+  Form1.filename:='kvasovski.html';
+  Form1.AllObject();
+
+end;
+
+procedure TForm1.MenuItem39Click(Sender: TObject);
+{Михайлиця автодозвон}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Михайлица';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem3Click(Sender: TObject);
+{Отключенные объекты оставшиеся на связи}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.zaprdate:='now';
+  SQLQuery1.Close;
+  SQLQuery1.sql.text:='SELECT FIRST 20 a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) > 0 ORDER BY a.LASTTESTTIME1 DESC';
+  SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+  {SQLQuery1.ParamByName('zaprdate').AsString:=Form1.zaprdate;}
+  SQLQuery1.Open;
+
+  frReport1.LoadFromFile('proba5.lrf');
+  frReport1.ShowReport;
+  if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'otkl_active.html');
+  IBConnection1.Close;
+  IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem40Click(Sender: TObject);
+ { Михайлица повний перелік }
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Михайлица';
+  Form1.filename:='mihailiza.html';
+  Form1.AllObject();
+
+end;
+
+procedure TForm1.MenuItem42Click(Sender: TObject);
+ {Нижний автодозвон}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Нижний';
+  Form1.AVDObject();
+end;
+
+procedure TForm1.MenuItem43Click(Sender: TObject);
+ {Нижний повний перелік}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Нижний';
+  Form1.filename:='nizniy.html';
+  Form1.AllObject();
+end;
+
+procedure TForm1.MenuItem44Click(Sender: TObject);
+ {Діючі об`єкти МТС}
+begin
+  Form1.obsluga:='ОТКЛЮЧИТЬ';
+  {Form1.obsluga:='РЕМОНТ';}
+  SQLQuery1.Close;
+  SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND POSITION(:gsmoperator,a.GSMPHONE) >0 AND character_length(a.GSMPHONE) > 0 ORDER BY a.OBJN';
+  SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+  SQLQuery1.ParamByName('gsmoperator').AsString:='050';
+  SQLQuery1.Open;
+
+  frReport1.LoadFromFile('proba6.lrf');
+  frReport1.ShowReport;
+  if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'mtcgsmobjects.html');
+  IBConnection1.Close;
+  IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem45Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.MenuItem47Click(Sender: TObject);
+{Техн. обслуг. ПП *ХМЕЛЬНИЦКПОЖСЕРВІС -Дяченко*}
+begin
+
+end;
+
+procedure TForm1.MenuItem48Click(Sender: TObject);
+{Техн. обслуг.  ВАТ ЕК *Хмельницькобленерго*  *  78-78-67, 78-78-68}
+begin
+
+end;
+
+procedure TForm1.MenuItem49Click(Sender: TObject);
+{Техн. обслуг. ТОВ * Спецпожгазмонтаж*  *  665053}
+begin
+
+end;
+
+procedure TForm1.MenuItem4Click(Sender: TObject);
+begin
+
+end;
+
+
+end.
+
