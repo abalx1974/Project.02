@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 193
+  Left = 209
   Height = 504
-  Top = 112
+  Top = 168
   Width = 1110
   Caption = 'Проект 02'
   ClientHeight = 484
@@ -181,8 +181,12 @@ object Form1: TForm1
           OnClick = MenuItem26Click
         end
         object MenuItem31: TMenuItem
-          Caption = 'Об`єкти повний перелік'
+          Caption = 'Об`єкти повний перелік (скорочено)'
           OnClick = MenuItem31Click
+        end
+        object MenuItem77: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem77Click
         end
       end
       object MenuItem13: TMenuItem

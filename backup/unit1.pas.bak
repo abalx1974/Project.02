@@ -99,6 +99,7 @@ type
     MenuItem74: TMenuItem;
     MenuItem75: TMenuItem;
     MenuItem76: TMenuItem;
+    MenuItem77: TMenuItem;
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
     SQLQuery1: TSQLQuery;
@@ -171,11 +172,13 @@ type
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem75Click(Sender: TObject);
     procedure MenuItem76Click(Sender: TObject);
+    procedure MenuItem77Click(Sender: TObject);
   private
     { private declarations }
     procedure AVDObject();
     procedure AllObject();
     procedure ObslugaObject(name1:string);
+    procedure AllObjectXozorg();
   public
     { public declarations }
     Obsluga:      string;
@@ -214,6 +217,27 @@ begin
     IBConnection1.Close;
     IBConnection1.Open;
 end;
+
+procedure TForm1.AllObjectXozorg();
+begin
+    SQLQuery1.Close;
+
+    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
+
+    SQLQuery1.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 AND a.OBJUIN = b.OBJUIN ORDER BY a.OBJN';
+
+    SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
+    SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
+    SQLQuery1.Open;
+
+    frReport1.LoadFromFile('proba4.lrf');
+    frReport1.ShowReport;
+    if frReport1.PrepareReport then
+      frReport1.ExportTo(TfrHTMExportFilter,Form1.filename);
+    IBConnection1.Close;
+    IBConnection1.Open;
+end;
+
 procedure TForm1.AllObject();
 begin
     SQLQuery1.Close;
@@ -233,7 +257,7 @@ end;
 procedure TForm1.ObslugaObject(name1:string);
 begin
     SQLQuery1.Close;
-    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1,a.NOTES1, a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.NOTES1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1,a.NOTES1,a.GSMPHONE, a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.NOTES1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
     SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
     SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
     SQLQuery1.Open;
@@ -744,6 +768,15 @@ begin
    IBConnection1.Close;
    IBConnection1.Open;
 
+end;
+
+procedure TForm1.MenuItem77Click(Sender: TObject);
+{ Доля Объекты полный список с хозорганами }
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Доля';
+  Form1.filename:='dolya_xozorg.html';
+  Form1.AllObject();
 end;
 
 
