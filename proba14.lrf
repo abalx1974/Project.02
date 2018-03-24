@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <LazReport>
-    <Version Value="29"/>
+    <Version Value="31"/>
     <Title Value="Cross-tab report demo"/>
     <Subject Value=""/>
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2018-03-23 15:34:11"/>
+    <ReportLastChange Value="2018-03-24 23:07:26"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -17,13 +17,13 @@
     <Pages>
       <PrintToDefault Value="False"/>
       <DoublePass Value="False"/>
-      <SelectedPrinter Value="hp LaserJet 1010 HB"/>
+      <SelectedPrinter Value="Generic IBM Graphics 9pin wide"/>
       <PageCount Value="1"/>
       <Page1>
         <Name Value="Page1"/>
         <ClassName Value="TfrPageReport"/>
         <Visible Value="True"/>
-        <Width Value="842"/>
+        <Width Value="841"/>
         <Height Value="595"/>
         <Script Value=""/>
         <PgSize Value="9"/>
@@ -48,7 +48,7 @@
           <Size>
             <Left Value="0"/>
             <Top Value="20"/>
-            <Width Value="1064"/>
+            <Width Value="1063"/>
             <Height Value="32"/>
           </Size>
           <Flags Value="48"/>
@@ -76,7 +76,7 @@
           <Size>
             <Left Value="0"/>
             <Top Value="52"/>
-            <Width Value="1064"/>
+            <Width Value="1063"/>
             <Height Value="24"/>
           </Size>
           <Flags Value="48"/>
@@ -104,7 +104,7 @@
           <Size>
             <Left Value="0"/>
             <Top Value="88"/>
-            <Width Value="1064"/>
+            <Width Value="1063"/>
             <Height Value="148"/>
           </Size>
           <Flags Value="48"/>
@@ -1244,14 +1244,14 @@
           <Cursor Value="0"/>
         </Object23>
         <Object24>
-          <Name Value="Memo20"/>
+          <Name Value="Memo21"/>
           <ClassName Value="TfrMemoView"/>
           <Visible Value="True"/>
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="288"/>
-            <Top Value="144"/>
+            <Left Value="231"/>
+            <Top Value="143"/>
             <Width Value="192"/>
             <Height Value="18"/>
           </Size>
@@ -1267,7 +1267,7 @@
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
-            <Memo Value="[Surname1]&#xD;&#xA;"/>
+            <Memo Value="[Name]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -1299,82 +1299,397 @@
           <Justify Value="False"/>
           <Cursor Value="0"/>
         </Object24>
-        <ObjectCount Value="24"/>
+        <Object25>
+          <Name Value="Memo23"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="427"/>
+            <Top Value="142"/>
+            <Width Value="192"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="[Secname]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial Narrow"/>
+            <Size Value="8"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object25>
+        <Object26>
+          <Name Value="Memo24"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="622"/>
+            <Top Value="141"/>
+            <Width Value="192"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="[PhoneXoz]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial Narrow"/>
+            <Size Value="8"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object26>
+        <Object27>
+          <Name Value="Memo25"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="32"/>
+            <Top Value="144"/>
+            <Width Value="195"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="[Surname]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial"/>
+            <Size Value="8"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object27>
+        <Object28>
+          <Name Value="Memo20"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="816"/>
+            <Top Value="141"/>
+            <Width Value="192"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="[StatusXoz]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial Narrow"/>
+            <Size Value="8"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object28>
+        <Object29>
+          <Name Value="Memo26"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="32"/>
+            <Top Value="120"/>
+            <Width Value="252"/>
+            <Height Value="18"/>
+          </Size>
+          <Flags Value="3"/>
+          <FillColor Value="clNone"/>
+          <Frames>
+            <FrameColor Value="clBlack"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value=""/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="[Mainphone]&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial"/>
+            <Size Value="10"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value=""/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taLeftJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object29>
+        <ObjectCount Value="29"/>
       </Page1>
       <FVal>
-        <Count Value="10"/>
+        <Count Value="15"/>
         <Objects1>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="OBJN"/>
           <Item Value="Number"/>
         </Objects1>
         <Objects2>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="OBJSHORTNAME1"/>
           <Item Value="Nazva"/>
         </Objects2>
         <Objects3>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="LOCATION1"/>
           <Item Value="Osoba"/>
         </Objects3>
         <Objects4>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="ADDRESS1"/>
           <Item Value="Adr"/>
         </Objects4>
         <Objects5>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="CONTRACT1"/>
           <Item Value="Ndog"/>
         </Objects5>
         <Objects6>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
-          <Field Value=""/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="NOTES1"/>
           <Item Value="Note"/>
         </Objects6>
         <Objects7>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="OBJFULLNAME1"/>
           <Item Value="Nazva2"/>
         </Objects7>
         <Objects8>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="GSMPHONE"/>
           <Item Value="GSMNum"/>
         </Objects8>
         <Objects9>
           <Typ Value="1"/>
           <OtherKind Value="0"/>
-          <Dataset Value="SQLQuery1"/>
+          <Dataset Value="SQLQuery2"/>
           <Field Value="LASTTESTTIME1"/>
           <Item Value="Lasttest"/>
         </Objects9>
         <Objects10>
-          <Typ Value="0"/>
-          <OtherKind Value="1"/>
-          <Dataset Value=""/>
-          <Field Value="osoba"/>
-          <Item Value="Status_Perevoda"/>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="SURNAME1"/>
+          <Item Value="Surname"/>
         </Objects10>
+        <Objects11>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="NAME1"/>
+          <Item Value="Name"/>
+        </Objects11>
+        <Objects12>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="SECNAME1"/>
+          <Item Value="Secname"/>
+        </Objects12>
+        <Objects13>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="PHONES1"/>
+          <Item Value="Mainphone"/>
+        </Objects13>
+        <Objects14>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="PHONES1_1"/>
+          <Item Value="PhoneXoz"/>
+        </Objects14>
+        <Objects15>
+          <Typ Value="1"/>
+          <OtherKind Value="0"/>
+          <Dataset Value="SQLQuery2"/>
+          <Field Value="STATUS1"/>
+          <Item Value="StatusXoz"/>
+        </Objects15>
       </FVal>
-      <ParentVars Value="ObjectData&#xD;&#xA; Osoba&#xD;&#xA; Number&#xD;&#xA; Nazva&#xD;&#xA; Nazva2&#xD;&#xA; Adr&#xD;&#xA; Ndog&#xD;&#xA; Note&#xD;&#xA; GSMNum&#xD;&#xA; Lasttest&#xD;&#xA; Status_Perevoda&#xD;&#xA;"/>
+      <ParentVars Value="ObjectData&#xD;&#xA; Osoba&#xD;&#xA; Number&#xD;&#xA; Nazva&#xD;&#xA; Nazva2&#xD;&#xA; Adr&#xD;&#xA; Ndog&#xD;&#xA; Note&#xD;&#xA; GSMNum&#xD;&#xA; Lasttest&#xD;&#xA; Mainphone&#xD;&#xA; Surname&#xD;&#xA; Name&#xD;&#xA; Secname&#xD;&#xA; PhoneXoz&#xD;&#xA; StatusXoz&#xD;&#xA;"/>
     </Pages>
     <DetailReports>
       <Count Value="3"/>

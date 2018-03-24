@@ -103,6 +103,7 @@ type
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
     SQLQuery1: TSQLQuery;
+    SQLQuery2: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
     procedure FormCreate(Sender: TObject);
     procedure frPreview1Click(Sender: TObject);
@@ -220,15 +221,19 @@ end;
 
 procedure TForm1.AllObjectXozorg();
 begin
-    SQLQuery1.Close;
+  IBConnection1.Close;
+  IBConnection1.Open;
+    SQLQuery2.Close;
 
-    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 ORDER BY a.OBJN';
+    //SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a RIGHT JOIN PERSONAL b ON b.OBJUIN = a.OBJUIN WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999';
 
-    SQLQuery1.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 AND a.OBJUIN = b.OBJUIN ORDER BY a.OBJN';
+    //SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 UNION SELECT b.OBJUIN,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1 FROM PERSONAL b  ';
 
-    SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
-    SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
-    SQLQuery1.Open;
+    SQLQuery2.ParamByName('otkl').AsString:=Form1.Obsluga;
+    SQLQuery2.ParamByName('obslug').AsString:=Form1.Osoba;
+    SQLQuery2.Open;
+
 
     frReport1.LoadFromFile('proba14.lrf');
     frReport1.ShowReport;
@@ -776,7 +781,7 @@ begin
   Form1.Obsluga:='ОТКЛЮЧИТЬ';
   Form1.Osoba:='Доля';
   Form1.filename:='dolya_xozorg.html';
-  Form1.AllObject();
+  Form1.AllObjectXozorg();
 end;
 
 

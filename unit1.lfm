@@ -1,14 +1,14 @@
 object Form1: TForm1
-  Left = 209
-  Height = 504
-  Top = 168
-  Width = 1110
+  Left = 34
+  Height = 524
+  Top = 135
+  Width = 974
   Caption = 'Проект 02'
-  ClientHeight = 484
-  ClientWidth = 1110
+  ClientHeight = 504
+  ClientWidth = 974
   Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.8.2.0'
   object frPreview1: TfrPreview
     Left = 16
     Height = 378
@@ -22,7 +22,7 @@ object Form1: TForm1
   object Label1: TLabel
     AnchorSideTop.Side = asrBottom
     Left = 16
-    Height = 18
+    Height = 38
     Top = 464
     Width = 34
     Align = alCustom
@@ -344,21 +344,90 @@ object Form1: TForm1
     end
   end
   object IBConnection1: TIBConnection
-    Connected = False
+    Connected = True
     LoginPrompt = False
     AfterConnect = IBConnection1AfterConnect
+    DatabaseName = 'most5'
     KeepConnection = True
     Password = 'masterkey'
     Transaction = SQLTransaction1
     UserName = 'sysdba'
     CharSet = 'UTF8'
-    Options = []
     CheckTransactionParams = False
     left = 16
     top = 392
   end
   object SQLQuery1: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'OBJUIN'
+        DataType = ftLargeint
+        Precision = -1
+      end    
+      item
+        Name = 'OBJN'
+        DataType = ftLargeint
+        Precision = -1
+      end    
+      item
+        Name = 'GRPN'
+        DataType = ftLargeint
+        Precision = -1
+      end    
+      item
+        Name = 'OBJFULLNAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 808
+      end    
+      item
+        Name = 'OBJSHORTNAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 408
+      end    
+      item
+        Name = 'ADDRESS1'
+        DataType = ftString
+        Precision = -1
+        Size = 808
+      end    
+      item
+        Name = 'CONTRACT1'
+        DataType = ftString
+        Precision = -1
+        Size = 88
+      end    
+      item
+        Name = 'LOCATION1'
+        DataType = ftString
+        Precision = -1
+        Size = 12288
+      end    
+      item
+        Name = 'NOTES1'
+        DataType = ftString
+        Precision = -1
+        Size = 12288
+      end    
+      item
+        Name = 'LASTEVTIME1'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'LASTTESTTIME1'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'GSMPHONE'
+        DataType = ftString
+        Precision = -1
+        Size = 128
+      end>
+    Active = True
     Database = IBConnection1
     Transaction = SQLTransaction1
     SQL.Strings = (
@@ -371,7 +440,6 @@ object Form1: TForm1
     RefreshSQL.Strings = (
       ''
     )
-    Options = []
     Params = <    
       item
         DataType = ftUnknown
@@ -382,9 +450,8 @@ object Form1: TForm1
     top = 392
   end
   object SQLTransaction1: TSQLTransaction
-    Active = False
+    Active = True
     Database = IBConnection1
-    Options = []
     left = 96
     top = 392
   end
@@ -410,6 +477,122 @@ object Form1: TForm1
     DataType = dtDataSet
     Title = 'Cross-tab report demo'
     left = 256
+    top = 392
+  end
+  object SQLQuery2: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'OBJUIN'
+        DataType = ftLargeint
+        Precision = -1
+      end    
+      item
+        Name = 'OBJN'
+        DataType = ftLargeint
+        Precision = -1
+      end    
+      item
+        Name = 'OBJFULLNAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 808
+      end    
+      item
+        Name = 'OBJSHORTNAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 408
+      end    
+      item
+        Name = 'ADDRESS1'
+        DataType = ftString
+        Precision = -1
+        Size = 808
+      end    
+      item
+        Name = 'PHONES1'
+        DataType = ftString
+        Precision = -1
+        Size = 408
+      end    
+      item
+        Name = 'SURNAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 248
+      end    
+      item
+        Name = 'NAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 120
+      end    
+      item
+        Name = 'SECNAME1'
+        DataType = ftString
+        Precision = -1
+        Size = 136
+      end    
+      item
+        Name = 'ADDRESS1_1'
+        DataType = ftString
+        Precision = -1
+        Size = 808
+      end    
+      item
+        Name = 'PHONES1_1'
+        DataType = ftString
+        Precision = -1
+        Size = 488
+      end    
+      item
+        Name = 'STATUS1'
+        DataType = ftString
+        Precision = -1
+        Size = 248
+      end    
+      item
+        Name = 'CONTRACT1'
+        DataType = ftString
+        Precision = -1
+        Size = 88
+      end    
+      item
+        Name = 'LOCATION1'
+        DataType = ftString
+        Precision = -1
+        Size = 12288
+      end    
+      item
+        Name = 'NOTES1'
+        DataType = ftString
+        Precision = -1
+        Size = 12288
+      end    
+      item
+        Name = 'GSMPHONE'
+        DataType = ftString
+        Precision = -1
+        Size = 128
+      end    
+      item
+        Name = 'LASTTESTTIME1'
+        DataType = ftDateTime
+        Precision = -1
+      end>
+    Database = IBConnection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(''Доля'',a.LOCATION1) > 0 AND POSITION(''ОТКЮЧИТЬ'',a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN'
+    )
+    InsertSQL.Strings = (
+      ''
+    )
+    RefreshSQL.Strings = (
+      ''
+    )
+    Params = <>
+    left = 56
     top = 392
   end
 end
