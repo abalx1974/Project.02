@@ -7,9 +7,10 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, IBConnection, sqldb, db, FileUtil, LR_DBSet, LR_E_HTM,
-  LR_Class, LR_View, lrAddFunctionLibrary, Forms, Controls, Graphics, Dialogs,
-  Menus, ComCtrls, StdCtrls,INIFiles,lconvencoding,unit2;
+  Classes, SysUtils, IBConnection, sqldb, db, fpstdexports, FileUtil, LR_DBSet,
+  LR_E_HTM, LR_Class, LR_View, lrAddFunctionLibrary, Forms, Controls, Graphics,
+  Dialogs, Menus, ComCtrls, StdCtrls, DBGrids, fpsexport, INIFiles,
+  lconvencoding, unit2;
 
 type
 
@@ -17,6 +18,9 @@ type
 
   TForm1 = class(TForm)
     DataSource1: TDataSource;
+    DataSource2: TDataSource;
+    DBGrid1: TDBGrid;
+    FPSExport1: TFPSExport;
     frDBDataSet1: TfrDBDataSet;
     frHTMExport1: TfrHTMExport;
     frPreview1: TfrPreview;
@@ -100,7 +104,13 @@ type
     MenuItem75: TMenuItem;
     MenuItem76: TMenuItem;
     MenuItem77: TMenuItem;
+    MenuItem78: TMenuItem;
+    MenuItem79: TMenuItem;
     MenuItem8: TMenuItem;
+    MenuItem80: TMenuItem;
+    MenuItem81: TMenuItem;
+    MenuItem82: TMenuItem;
+    MenuItem83: TMenuItem;
     MenuItem9: TMenuItem;
     SQLQuery1: TSQLQuery;
     SQLQuery2: TSQLQuery;
@@ -174,6 +184,12 @@ type
     procedure MenuItem75Click(Sender: TObject);
     procedure MenuItem76Click(Sender: TObject);
     procedure MenuItem77Click(Sender: TObject);
+    procedure MenuItem78Click(Sender: TObject);
+    procedure MenuItem79Click(Sender: TObject);
+    procedure MenuItem80Click(Sender: TObject);
+    procedure MenuItem81Click(Sender: TObject);
+    procedure MenuItem82Click(Sender: TObject);
+    procedure MenuItem83Click(Sender: TObject);
   private
     { private declarations }
     procedure AVDObject();
@@ -220,27 +236,36 @@ begin
 end;
 
 procedure TForm1.AllObjectXozorg();
+var
+    Exp: TFPSExport;
+    ExpSettings: TFPSExportFormatSettings;
+    TheDate: TDateTime;
+
 begin
-  IBConnection1.Close;
-  IBConnection1.Open;
+
     SQLQuery2.Close;
 
     SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 ORDER BY a.OBJN';
-    //SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a RIGHT JOIN PERSONAL b ON b.OBJUIN = a.OBJUIN WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999';
-
-    //SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 UNION SELECT b.OBJUIN,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1 FROM PERSONAL b  ';
 
     SQLQuery2.ParamByName('otkl').AsString:=Form1.Obsluga;
     SQLQuery2.ParamByName('obslug').AsString:=Form1.Osoba;
     SQLQuery2.Open;
 
 
-    frReport1.LoadFromFile('proba14.lrf');
-    frReport1.ShowReport;
-    if frReport1.PrepareReport then
-      frReport1.ExportTo(TfrHTMExportFilter,Form1.filename);
-    IBConnection1.Close;
-    IBConnection1.Open;
+    Exp := TFPSExport.Create(nil);
+    ExpSettings := TFPSExportFormatSettings.Create(true);
+
+    ExpSettings.ExportFormat := efXLS; // choose file format
+    ExpSettings.HeaderRow := true; // include header row with field names
+    Exp.FormatSettings := ExpSettings; // apply settings to export object
+    Exp.Dataset:=SQLQuery2;
+    Exp.FileName := Form1.filename;
+    Exp.Execute; // run the export
+
+    Exp.Free;
+    ExpSettings.Free;
+
+
 end;
 
 procedure TForm1.AllObject();
@@ -780,7 +805,61 @@ procedure TForm1.MenuItem77Click(Sender: TObject);
 begin
   Form1.Obsluga:='ОТКЛЮЧИТЬ';
   Form1.Osoba:='Доля';
-  Form1.filename:='dolya_xozorg.html';
+  Form1.filename:='dolya_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem78Click(Sender: TObject);
+{Бабій всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Бабій';
+  Form1.filename:='babij_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem79Click(Sender: TObject);
+{Гуцалюк всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Гуцалюк';
+  Form1.filename:='guzaluk_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem80Click(Sender: TObject);
+{Віт всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Віт';
+  Form1.filename:='vit_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem81Click(Sender: TObject);
+{Кармаліта всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Кармаліта';
+  Form1.filename:='karmalita_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem82Click(Sender: TObject);
+{Гудима всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Гудима';
+  Form1.filename:='gudima_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem83Click(Sender: TObject);
+{Лозинський всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Лозінський';
+  Form1.filename:='lozinski_xozorg.xls';
   Form1.AllObjectXozorg();
 end;
 

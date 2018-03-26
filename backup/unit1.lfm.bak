@@ -1,23 +1,35 @@
 object Form1: TForm1
-  Left = 34
+  Left = 288
   Height = 524
-  Top = 135
+  Top = 116
   Width = 974
   Caption = 'Проект 02'
   ClientHeight = 504
   ClientWidth = 974
   Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '1.6.4.0'
   object frPreview1: TfrPreview
     Left = 16
     Height = 378
     Top = 8
     Width = 947
     BevelOuter = bvLowered
+    ClientHeight = 378
+    ClientWidth = 947
     TabOrder = 0
     OnClick = frPreview1Click
     ScrollBars = ssBoth
+    object DBGrid1: TDBGrid
+      Left = 0
+      Height = 344
+      Top = 0
+      Width = 944
+      Color = clWindow
+      Columns = <>
+      DataSource = DataSource2
+      TabOrder = 0
+    end
   end
   object Label1: TLabel
     AnchorSideTop.Side = asrBottom
@@ -106,6 +118,10 @@ object Form1: TForm1
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem35Click
         end
+        object MenuItem79: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem79Click
+        end
       end
       object MenuItem6: TMenuItem
         Caption = 'Віт О.В.'
@@ -116,6 +132,10 @@ object Form1: TForm1
         object MenuItem34: TMenuItem
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem34Click
+        end
+        object MenuItem80: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem80Click
         end
       end
       object MenuItem7: TMenuItem
@@ -128,6 +148,10 @@ object Form1: TForm1
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem33Click
         end
+        object MenuItem82: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem82Click
+        end
       end
       object MenuItem8: TMenuItem
         Caption = 'Лозінський І.І.'
@@ -138,6 +162,10 @@ object Form1: TForm1
         object MenuItem32: TMenuItem
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem32Click
+        end
+        object MenuItem83: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem83Click
         end
       end
       object MenuItem9: TMenuItem
@@ -161,6 +189,10 @@ object Form1: TForm1
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem29Click
         end
+        object MenuItem81: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem81Click
+        end
       end
       object MenuItem11: TMenuItem
         Caption = 'Бабій В.Я.'
@@ -171,6 +203,10 @@ object Form1: TForm1
         object MenuItem30: TMenuItem
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem30Click
+        end
+        object MenuItem78: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem78Click
         end
       end
       object MenuItem12: TMenuItem
@@ -344,7 +380,7 @@ object Form1: TForm1
     end
   end
   object IBConnection1: TIBConnection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     AfterConnect = IBConnection1AfterConnect
     DatabaseName = 'most5'
@@ -353,12 +389,12 @@ object Form1: TForm1
     Transaction = SQLTransaction1
     UserName = 'sysdba'
     CharSet = 'UTF8'
+    Options = []
     CheckTransactionParams = False
     left = 16
     top = 392
   end
   object SQLQuery1: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'OBJUIN'
@@ -427,7 +463,6 @@ object Form1: TForm1
         Precision = -1
         Size = 128
       end>
-    Active = True
     Database = IBConnection1
     Transaction = SQLTransaction1
     SQL.Strings = (
@@ -440,6 +475,7 @@ object Form1: TForm1
     RefreshSQL.Strings = (
       ''
     )
+    Options = []
     Params = <    
       item
         DataType = ftUnknown
@@ -450,8 +486,9 @@ object Form1: TForm1
     top = 392
   end
   object SQLTransaction1: TSQLTransaction
-    Active = True
+    Active = False
     Database = IBConnection1
+    Options = []
     left = 96
     top = 392
   end
@@ -591,8 +628,32 @@ object Form1: TForm1
     RefreshSQL.Strings = (
       ''
     )
+    Options = []
     Params = <>
     left = 56
+    top = 392
+  end
+  object DataSource2: TDataSource
+    DataSet = SQLQuery2
+    left = 368
+    top = 392
+  end
+  object FPSExport1: TFPSExport
+    FileName = 'out.xls'
+    Dataset = SQLQuery2
+    ExportFields = <>
+    FormatSettings.IntegerFormat = '%d'
+    FormatSettings.DecimalSeparator = ','
+    FormatSettings.CurrencySymbol = '₽'
+    FormatSettings.CurrencyDigits = 0
+    FormatSettings.BooleanTrue = 'True'
+    FormatSettings.BooleanFalse = 'False'
+    FormatSettings.DateFormat = 'ddd dd.MM.yy'
+    FormatSettings.TimeFormat = 'h:nn'
+    FormatSettings.DateTimeFormat = 'ddd dd.MM.yy h:nn'
+    FormatSettings.ExportFormat = efXLS
+    FormatSettings.SheetName = 'Sheet'
+    left = 464
     top = 392
   end
 end
