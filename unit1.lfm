@@ -107,6 +107,10 @@ object Form1: TForm1
           Caption = 'Об`єкти повний перелік'
           OnClick = MenuItem36Click
         end
+        object MenuItem84: TMenuItem
+          Caption = 'Об`екти повний перелік (з хозорганами)'
+          OnClick = MenuItem84Click
+        end
       end
       object MenuItem5: TMenuItem
         Caption = 'Гуцалюк С.В.'

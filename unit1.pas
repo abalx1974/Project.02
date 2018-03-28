@@ -111,6 +111,7 @@ type
     MenuItem81: TMenuItem;
     MenuItem82: TMenuItem;
     MenuItem83: TMenuItem;
+    MenuItem84: TMenuItem;
     MenuItem9: TMenuItem;
     SQLQuery1: TSQLQuery;
     SQLQuery2: TSQLQuery;
@@ -190,6 +191,7 @@ type
     procedure MenuItem81Click(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
+    procedure MenuItem84Click(Sender: TObject);
   private
     { private declarations }
     procedure AVDObject();
@@ -245,7 +247,7 @@ begin
 
     SQLQuery2.Close;
 
-    SQLQuery2.sql.text:='SELECT a.OBJUIN, a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery2.sql.text:='SELECT a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 ORDER BY a.OBJN';
 
     SQLQuery2.ParamByName('otkl').AsString:=Form1.Obsluga;
     SQLQuery2.ParamByName('obslug').AsString:=Form1.Osoba;
@@ -855,11 +857,20 @@ begin
 end;
 
 procedure TForm1.MenuItem83Click(Sender: TObject);
-{Лозинський всі об`єкти з хозорганами}
+{Лозінський всі об`єкти з хозорганами}
 begin
   Form1.Obsluga:='ОТКЛЮЧИТЬ';
   Form1.Osoba:='Лозінський';
   Form1.filename:='lozinski_xozorg.xls';
+  Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem84Click(Sender: TObject);
+{Кушнір всі об`єкти з хозорганами}
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='Кушнір';
+  Form1.filename:='kushnir_xozorg.xls';
   Form1.AllObjectXozorg();
 end;
 
