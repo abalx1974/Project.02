@@ -338,7 +338,7 @@ object Form1: TForm1
         OnClick = MenuItem63Click
       end
       object MenuItem64: TMenuItem
-        Caption = 'Техн. обслуг. Хмельницький Національний Університет * Олександр - 096-41390-58'
+        Caption = 'Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766'
         OnClick = MenuItem64Click
       end
       object MenuItem65: TMenuItem

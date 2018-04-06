@@ -647,12 +647,12 @@ begin
 end;
 
 procedure TForm1.MenuItem64Click(Sender: TObject);
-{Техн. обслуг. Хмельницький Національний Університет * Олександр - 096-41390-58}
+{Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766}
 begin
   Form1.obsluga:='ОТКЛЮЧИТЬ';
-  Form1.Osoba:='Університет';
+  Form1.Osoba:='Грінник';
   Form1.filename:='to_hnu.html';
-  Form1.ObslugaObject('Техн. обслуг. Хмельницький Національний Університет * Олександр - 096-41390-58');
+  Form1.ObslugaObject('Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766');
 end;
 
 procedure TForm1.MenuItem65Click(Sender: TObject);

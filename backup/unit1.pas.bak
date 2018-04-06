@@ -247,7 +247,7 @@ begin
 
     SQLQuery2.Close;
 
-    SQLQuery2.sql.text:='SELECT a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE,a.LASTTESTTIME1 FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery2.sql.text:='SELECT a.OBJN,a.OBJFULLNAME1, a.OBJSHORTNAME1,a.ADDRESS1, a.PHONES1,b.SURNAME1, b.NAME1, b.SECNAME1, b.ADDRESS1, b.PHONES1, b.STATUS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.GSMPHONE FROM OBJECTS a,PERSONAL b WHERE a.OBJUIN = b.OBJUIN AND POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND a.OBJN > 999 ORDER BY a.OBJN';
 
     SQLQuery2.ParamByName('otkl').AsString:=Form1.Obsluga;
     SQLQuery2.ParamByName('obslug').AsString:=Form1.Osoba;
@@ -647,12 +647,12 @@ begin
 end;
 
 procedure TForm1.MenuItem64Click(Sender: TObject);
-{Техн. обслуг. Хмельницький Національний Університет * Олександр - 096-41390-58}
+{Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766}
 begin
   Form1.obsluga:='ОТКЛЮЧИТЬ';
   Form1.Osoba:='Університет';
   Form1.filename:='to_hnu.html';
-  Form1.ObslugaObject('Техн. обслуг. Хмельницький Національний Університет * Олександр - 096-41390-58');
+  Form1.ObslugaObject('Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766');
 end;
 
 procedure TForm1.MenuItem65Click(Sender: TObject);
