@@ -9,7 +9,7 @@ interface
 uses
   Classes, SysUtils, IBConnection, sqldb, db, fpstdexports, FileUtil, LR_DBSet,
   LR_E_HTM, LR_Class, LR_View, lrAddFunctionLibrary, Forms, Controls, Graphics,
-  Dialogs, Menus, ComCtrls, StdCtrls, DBGrids, fpsexport, INIFiles,
+  Dialogs, Menus, ComCtrls, StdCtrls, DBGrids, ExtCtrls, fpsexport, INIFiles,
   lconvencoding, unit2;
 
 type
@@ -17,6 +17,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
     DataSource1: TDataSource;
     DataSource2: TDataSource;
     DBGrid1: TDBGrid;
@@ -28,6 +29,9 @@ type
     IBConnection1: TIBConnection;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem10: TMenuItem;
@@ -112,14 +116,18 @@ type
     MenuItem82: TMenuItem;
     MenuItem83: TMenuItem;
     MenuItem84: TMenuItem;
+    MenuItem85: TMenuItem;
     MenuItem9: TMenuItem;
+    Panel1: TPanel;
     SQLQuery1: TSQLQuery;
     SQLQuery2: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure frPreview1Click(Sender: TObject);
     procedure IBConnection1AfterConnect(Sender: TObject);
     procedure Label1Click(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
     procedure MenuItem14Click(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
@@ -192,6 +200,8 @@ type
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
     procedure MenuItem84Click(Sender: TObject);
+    procedure MenuItem85Click(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
   private
     { private declarations }
     procedure AVDObject();
@@ -470,6 +480,11 @@ begin
 
 end;
 
+procedure TForm1.Label4Click(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.frPreview1Click(Sender: TObject);
 begin
 
@@ -504,6 +519,16 @@ begin
        Label2.Caption:=database_name;
        Label2.Visible:=true;
 
+       Panel1.Enabled:=false;
+       Panel1.Visible:=false;
+
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+{ Выход из окна про програму }
+begin
+    Panel1.Enabled:=false;
+    Panel1.Visible:=false;
 end;
 
 procedure TForm1.MenuItem46Click(Sender: TObject);
@@ -872,6 +897,18 @@ begin
   Form1.Osoba:='Кушнір';
   Form1.filename:='kushnir_xozorg.xls';
   Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem85Click(Sender: TObject);
+ { Версия програмного обеспечения}
+begin
+   Panel1.Enabled:=true;
+   Panel1.Visible:=true;
+end;
+
+procedure TForm1.Panel1Click(Sender: TObject);
+begin
+
 end;
 
 

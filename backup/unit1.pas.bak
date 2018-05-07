@@ -9,7 +9,7 @@ interface
 uses
   Classes, SysUtils, IBConnection, sqldb, db, fpstdexports, FileUtil, LR_DBSet,
   LR_E_HTM, LR_Class, LR_View, lrAddFunctionLibrary, Forms, Controls, Graphics,
-  Dialogs, Menus, ComCtrls, StdCtrls, DBGrids, fpsexport, INIFiles,
+  Dialogs, Menus, ComCtrls, StdCtrls, DBGrids, ExtCtrls, fpsexport, INIFiles,
   lconvencoding, unit2;
 
 type
@@ -17,6 +17,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
     DataSource1: TDataSource;
     DataSource2: TDataSource;
     DBGrid1: TDBGrid;
@@ -112,10 +113,13 @@ type
     MenuItem82: TMenuItem;
     MenuItem83: TMenuItem;
     MenuItem84: TMenuItem;
+    MenuItem85: TMenuItem;
     MenuItem9: TMenuItem;
+    Panel1: TPanel;
     SQLQuery1: TSQLQuery;
     SQLQuery2: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure frPreview1Click(Sender: TObject);
     procedure IBConnection1AfterConnect(Sender: TObject);
@@ -192,6 +196,8 @@ type
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
     procedure MenuItem84Click(Sender: TObject);
+    procedure MenuItem85Click(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
   private
     { private declarations }
     procedure AVDObject();
@@ -504,6 +510,16 @@ begin
        Label2.Caption:=database_name;
        Label2.Visible:=true;
 
+       Panel1.Enabled:=false;
+       Panel1.Visible:=false;
+
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+{ Выход из окна про програму }
+begin
+    Panel1.Enabled:=false;
+    Panel1.Visible:=false;
 end;
 
 procedure TForm1.MenuItem46Click(Sender: TObject);
@@ -650,7 +666,7 @@ procedure TForm1.MenuItem64Click(Sender: TObject);
 {Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766}
 begin
   Form1.obsluga:='ОТКЛЮЧИТЬ';
-  Form1.Osoba:='Університет';
+  Form1.Osoba:='Грінник';
   Form1.filename:='to_hnu.html';
   Form1.ObslugaObject('Техн. обслуг. Лабораторія МТОЗ Грінник Сергій Павлович 097-299-0766');
 end;
@@ -872,6 +888,18 @@ begin
   Form1.Osoba:='Кушнір';
   Form1.filename:='kushnir_xozorg.xls';
   Form1.AllObjectXozorg();
+end;
+
+procedure TForm1.MenuItem85Click(Sender: TObject);
+ { Версия програмного обеспечения}
+begin
+   Panel1.Enabled:=true;
+   Panel1.Visible:=true;
+end;
+
+procedure TForm1.Panel1Click(Sender: TObject);
+begin
+
 end;
 
 
