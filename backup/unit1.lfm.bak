@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 248
-  Height = 319
-  Top = 329
-  Width = 970
+  Left = 201
+  Height = 544
+  Top = 74
+  Width = 1057
   Caption = 'Проект 02'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 524
+  ClientWidth = 1057
   Menu = MainMenu1
   OnCreate = FormCreate
   LCLVersion = '1.6.4.0'
@@ -63,7 +63,7 @@ object Form1: TForm1
         Top = 63
         Width = 139
         Alignment = taCenter
-        Caption = 'Балашов  О.О.  2016-2018'
+        Caption = 'Балашов  О.О.  2016-2019'
         ParentColor = False
         OnClick = Label4Click
       end
@@ -73,7 +73,7 @@ object Form1: TForm1
         Top = 88
         Width = 80
         Alignment = taCenter
-        Caption = 'Версія 07.05.18'
+        Caption = 'Версія 20.09.19'
         ParentColor = False
       end
     end
@@ -81,7 +81,7 @@ object Form1: TForm1
   object Label1: TLabel
     AnchorSideTop.Side = asrBottom
     Left = 16
-    Height = 0
+    Height = 58
     Top = 464
     Width = 34
     Align = alCustom
@@ -144,9 +144,14 @@ object Form1: TForm1
         Caption = 'Об`екти в пожежі'
         OnClick = MenuItem86Click
       end
+      object MenuItem87: TMenuItem
+        Caption = 'Особоважливі об`екти '
+        OnClick = MenuItem87Click
+      end
     end
     object MenuItem2: TMenuItem
       Caption = 'Звіти по відповідальним'
+      OnClick = MenuItem2Click
       object MenuItem4: TMenuItem
         Caption = 'Кушнір Е.В.'
         OnClick = MenuItem4Click
@@ -454,74 +459,7 @@ object Form1: TForm1
     top = 392
   end
   object SQLQuery1: TSQLQuery
-    FieldDefs = <    
-      item
-        Name = 'OBJUIN'
-        DataType = ftLargeint
-        Precision = -1
-      end    
-      item
-        Name = 'OBJN'
-        DataType = ftLargeint
-        Precision = -1
-      end    
-      item
-        Name = 'GRPN'
-        DataType = ftLargeint
-        Precision = -1
-      end    
-      item
-        Name = 'OBJFULLNAME1'
-        DataType = ftString
-        Precision = -1
-        Size = 808
-      end    
-      item
-        Name = 'OBJSHORTNAME1'
-        DataType = ftString
-        Precision = -1
-        Size = 408
-      end    
-      item
-        Name = 'ADDRESS1'
-        DataType = ftString
-        Precision = -1
-        Size = 808
-      end    
-      item
-        Name = 'CONTRACT1'
-        DataType = ftString
-        Precision = -1
-        Size = 88
-      end    
-      item
-        Name = 'LOCATION1'
-        DataType = ftString
-        Precision = -1
-        Size = 12288
-      end    
-      item
-        Name = 'NOTES1'
-        DataType = ftString
-        Precision = -1
-        Size = 12288
-      end    
-      item
-        Name = 'LASTEVTIME1'
-        DataType = ftDateTime
-        Precision = -1
-      end    
-      item
-        Name = 'LASTTESTTIME1'
-        DataType = ftDateTime
-        Precision = -1
-      end    
-      item
-        Name = 'GSMPHONE'
-        DataType = ftString
-        Precision = -1
-        Size = 128
-      end>
+    FieldDefs = <>
     Database = IBConnection1
     Transaction = SQLTransaction1
     SQL.Strings = (
@@ -539,6 +477,11 @@ object Form1: TForm1
       item
         DataType = ftUnknown
         Name = 'obslug'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'kluch'
         ParamType = ptInput
       end>
     left = 56
@@ -689,7 +632,7 @@ object Form1: TForm1
     )
     Options = []
     Params = <>
-    left = 56
+    left = 520
     top = 392
   end
   object DataSource2: TDataSource

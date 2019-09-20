@@ -118,6 +118,7 @@ type
     MenuItem84: TMenuItem;
     MenuItem85: TMenuItem;
     MenuItem86: TMenuItem;
+    MenuItem87: TMenuItem;
     MenuItem9: TMenuItem;
     Panel1: TPanel;
     SQLQuery1: TSQLQuery;
@@ -146,6 +147,7 @@ type
     procedure MenuItem27Click(Sender: TObject);
     procedure MenuItem28Click(Sender: TObject);
     procedure MenuItem29Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem30Click(Sender: TObject);
     procedure MenuItem31Click(Sender: TObject);
     procedure MenuItem32Click(Sender: TObject);
@@ -203,6 +205,7 @@ type
     procedure MenuItem84Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
     procedure MenuItem86Click(Sender: TObject);
+    procedure MenuItem87Click(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
   private
     { private declarations }
@@ -403,6 +406,11 @@ begin
   Form1.Osoba:='Кармаліта';
   Form1.filename:='karmalita.html';
   Form1.AllObject();
+
+end;
+
+procedure TForm1.MenuItem2Click(Sender: TObject);
+begin
 
 end;
 
@@ -922,6 +930,27 @@ begin
     frReport1.ShowReport;
    if frReport1.PrepareReport then
     frReport1.ExportTo(TfrHTMExportFilter, 'vpozezhi.html');
+   IBConnection1.Close;
+   IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem87Click(Sender: TObject);
+{ Особоважные объекты }
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+   SQLQuery1.Close;
+   SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND POSITION(:kluch1,a.OBJSHORTNAME1)>0 OR POSITION(:kluch2,a.OBJSHORTNAME1)>0 OR POSITION(:kluch3,a.OBJSHORTNAME1)>0 AND a.OBJN >100 ORDER BY a.OBJN';
+   SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+   SQLQuery1.ParamByName('kluch1').AsString:='Школа';
+   SQLQuery1.ParamByName('kluch2').AsString:='Готель';
+   SQLQuery1.ParamByName('kluch3').AsString:='Санатор';
+
+   SQLQuery1.Open;
+
+   frReport1.LoadFromFile('proba10.lrf');
+    frReport1.ShowReport;
+   if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'osobovazhnye.html');
    IBConnection1.Close;
    IBConnection1.Open;
 end;
