@@ -117,6 +117,7 @@ type
     MenuItem83: TMenuItem;
     MenuItem84: TMenuItem;
     MenuItem85: TMenuItem;
+    MenuItem86: TMenuItem;
     MenuItem9: TMenuItem;
     Panel1: TPanel;
     SQLQuery1: TSQLQuery;
@@ -201,6 +202,7 @@ type
     procedure MenuItem83Click(Sender: TObject);
     procedure MenuItem84Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
+    procedure MenuItem86Click(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
   private
     { private declarations }
@@ -904,6 +906,24 @@ procedure TForm1.MenuItem85Click(Sender: TObject);
 begin
    Panel1.Enabled:=true;
    Panel1.Visible:=true;
+end;
+
+procedure TForm1.MenuItem86Click(Sender: TObject);
+{ Об`екти в пожежі }
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+   SQLQuery1.Close;
+   SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND a.ENG1=1 AND a.OBJN >100 ORDER BY a.OBJN';
+   SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+
+   SQLQuery1.Open;
+
+   frReport1.LoadFromFile('proba10.lrf');
+    frReport1.ShowReport;
+   if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'vpozezhi.html');
+   IBConnection1.Close;
+   IBConnection1.Open;
 end;
 
 procedure TForm1.Panel1Click(Sender: TObject);

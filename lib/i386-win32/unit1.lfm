@@ -1,10 +1,10 @@
 object Form1: TForm1
   Left = 248
-  Height = 524
-  Top = 124
+  Height = 319
+  Top = 255
   Width = 970
   Caption = 'Проект 02'
-  ClientHeight = 504
+  ClientHeight = 299
   ClientWidth = 970
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -63,7 +63,7 @@ object Form1: TForm1
         Top = 63
         Width = 139
         Alignment = taCenter
-        Caption = 'Балашов  О.О.  2016-2018'
+        Caption = 'Балашов  О.О.  2016-2019'
         ParentColor = False
         OnClick = Label4Click
       end
@@ -73,7 +73,7 @@ object Form1: TForm1
         Top = 88
         Width = 80
         Alignment = taCenter
-        Caption = 'Версія 07.05.18'
+        Caption = 'Версія 20.09.19'
         ParentColor = False
       end
     end
@@ -81,7 +81,7 @@ object Form1: TForm1
   object Label1: TLabel
     AnchorSideTop.Side = asrBottom
     Left = 16
-    Height = 38
+    Height = 0
     Top = 464
     Width = 34
     Align = alCustom
@@ -139,6 +139,10 @@ object Form1: TForm1
       object MenuItem76: TMenuItem
         Caption = 'Об''екти в отладці'
         OnClick = MenuItem76Click
+      end
+      object MenuItem86: TMenuItem
+        Caption = 'Об`екти в пожежі'
+        OnClick = MenuItem86Click
       end
     end
     object MenuItem2: TMenuItem
