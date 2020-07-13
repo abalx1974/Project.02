@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 201
+  Left = 274
   Height = 544
-  Top = 74
+  Top = 108
   Width = 1057
   Caption = 'Проект 02'
   ClientHeight = 524
@@ -21,9 +21,9 @@ object Form1: TForm1
     OnClick = frPreview1Click
     ScrollBars = ssBoth
     object DBGrid1: TDBGrid
-      Left = 0
+      Left = 8
       Height = 344
-      Top = 0
+      Top = -8
       Width = 944
       Color = clWindow
       Columns = <>
@@ -63,7 +63,7 @@ object Form1: TForm1
         Top = 63
         Width = 139
         Alignment = taCenter
-        Caption = 'Балашов  О.О.  2016-2019'
+        Caption = 'Балашов  О.О.  2016-2020'
         ParentColor = False
         OnClick = Label4Click
       end
@@ -73,8 +73,9 @@ object Form1: TForm1
         Top = 88
         Width = 80
         Alignment = taCenter
-        Caption = 'Версія 20.09.19'
+        Caption = 'Версія 13.07.20'
         ParentColor = False
+        OnClick = Label5Click
       end
     end
   end
@@ -120,6 +121,10 @@ object Form1: TForm1
         Caption = 'Діючі об`єкти на GSM/GPRS'
         OnClick = MenuItem15Click
       end
+      object MenuItem88: TMenuItem
+        Caption = 'Діючі об`єкти GPRS(xls)'
+        OnClick = MenuItem88Click
+      end
       object MenuItem16: TMenuItem
         Caption = 'Діючі об`єкти автодозвон'
         OnClick = MenuItem16Click
@@ -147,6 +152,10 @@ object Form1: TForm1
       object MenuItem87: TMenuItem
         Caption = 'Особоважливі об`екти '
         OnClick = MenuItem87Click
+      end
+      object MenuItem89: TMenuItem
+        Caption = 'Об`екти з листами '
+        OnClick = MenuItem89Click
       end
     end
     object MenuItem2: TMenuItem
@@ -477,11 +486,6 @@ object Form1: TForm1
       item
         DataType = ftUnknown
         Name = 'obslug'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'kluch'
         ParamType = ptInput
       end>
     left = 56

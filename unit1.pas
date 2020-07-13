@@ -10,7 +10,7 @@ uses
   Classes, SysUtils, IBConnection, sqldb, db, fpstdexports, FileUtil, LR_DBSet,
   LR_E_HTM, LR_Class, LR_View, lrAddFunctionLibrary, Forms, Controls, Graphics,
   Dialogs, Menus, ComCtrls, StdCtrls, DBGrids, ExtCtrls, fpsexport, INIFiles,
-  lconvencoding, unit2;
+  lconvencoding, unit2,Dos;
 
 type
 
@@ -119,6 +119,8 @@ type
     MenuItem85: TMenuItem;
     MenuItem86: TMenuItem;
     MenuItem87: TMenuItem;
+    MenuItem88: TMenuItem;
+    MenuItem89: TMenuItem;
     MenuItem9: TMenuItem;
     Panel1: TPanel;
     SQLQuery1: TSQLQuery;
@@ -130,6 +132,7 @@ type
     procedure IBConnection1AfterConnect(Sender: TObject);
     procedure Label1Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
+    procedure Label5Click(Sender: TObject);
     procedure MenuItem14Click(Sender: TObject);
     procedure MenuItem15Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
@@ -206,6 +209,8 @@ type
     procedure MenuItem85Click(Sender: TObject);
     procedure MenuItem86Click(Sender: TObject);
     procedure MenuItem87Click(Sender: TObject);
+    procedure MenuItem88Click(Sender: TObject);
+    procedure MenuItem89Click(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
   private
     { private declarations }
@@ -213,6 +218,7 @@ type
     procedure AllObject();
     procedure ObslugaObject(name1:string);
     procedure AllObjectXozorg();
+    procedure AllObjectList();
   public
     { public declarations }
     Obsluga:      string;
@@ -284,7 +290,21 @@ begin
 
 
 end;
+procedure TForm1.AllObjectList();
+begin
+    SQLQuery1.Close;
+    SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1 FROM OBJECTS a WHERE POSITION(:obslug,a.LOCATION1) > 0 AND POSITION(:otkl,a.OBJSHORTNAME1) = 0 AND OBJN > 999 ORDER BY a.OBJN';
+    SQLQuery1.ParamByName('otkl').AsString:=Form1.Obsluga;
+    SQLQuery1.ParamByName('obslug').AsString:=Form1.Osoba;
+    SQLQuery1.Open;
 
+    frReport1.LoadFromFile('proba16.lrf');
+    frReport1.ShowReport;
+    if frReport1.PrepareReport then
+      frReport1.ExportTo(TfrHTMExportFilter,Form1.filename);
+    IBConnection1.Close;
+    IBConnection1.Open;
+end;
 procedure TForm1.AllObject();
 begin
     SQLQuery1.Close;
@@ -491,6 +511,11 @@ begin
 end;
 
 procedure TForm1.Label4Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Label5Click(Sender: TObject);
 begin
 
 end;
@@ -921,12 +946,14 @@ procedure TForm1.MenuItem86Click(Sender: TObject);
 begin
   Form1.Obsluga:='ОТКЛЮЧИТЬ';
    SQLQuery1.Close;
-   SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND a.ENG1=1 AND a.OBJN >100 ORDER BY a.OBJN';
+   SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.OBJTYPEID, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1,  a.NEXTTESTTIME1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND POSITION(:remont,a.OBJSHORTNAME1)=0 AND a.ALARMSTATE1=1 AND a.OBJN >100 ORDER BY a.OBJN';
    SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+   Form1.Obsluga:='РЕМОНТ';
+   SQLQuery1.ParamByName('remont').AsString:=Form1.obsluga;
 
    SQLQuery1.Open;
 
-   frReport1.LoadFromFile('proba10.lrf');
+   frReport1.LoadFromFile('proba15.lrf');
     frReport1.ShowReport;
    if frReport1.PrepareReport then
     frReport1.ExportTo(TfrHTMExportFilter, 'vpozezhi.html');
@@ -953,6 +980,55 @@ begin
     frReport1.ExportTo(TfrHTMExportFilter, 'osobovazhnye.html');
    IBConnection1.Close;
    IBConnection1.Open;
+end;
+
+procedure TForm1.MenuItem88Click(Sender: TObject);
+{Діючі об`екти GPRS в таблицу xls}
+var
+    Exp: TFPSExport;
+    ExpSettings: TFPSExportFormatSettings;
+    TheDate: TDateTime;
+    Year,Month,Day,WDay : word;
+
+begin
+   Form1.obsluga:='ОТКЛЮЧИТЬ';
+  {Form1.obsluga:='РЕМОНТ';}
+  SQLQuery1.Close;
+  SQLQuery1.sql.text:='SELECT a.OBJN, a.OBJFULLNAME1, a.OBJSHORTNAME1, a.ADDRESS1, a.CONTRACT1, a.LOCATION1, a.NOTES1, a.LASTTESTTIME1, a.GSMPHONE FROM OBJECTS a WHERE POSITION(:obslug,a.OBJSHORTNAME1) = 0 AND character_length(a.GSMPHONE) > 0 ORDER BY a.OBJN';
+  SQLQuery1.ParamByName('obslug').AsString:=Form1.obsluga;
+  SQLQuery1.Open;
+
+  Exp := TFPSExport.Create(nil);
+    ExpSettings := TFPSExportFormatSettings.Create(true);
+
+    ExpSettings.ExportFormat := efXLS; // choose file format
+    ExpSettings.HeaderRow := true; // include header row with field names
+    Exp.FormatSettings := ExpSettings; // apply settings to export object
+    Exp.Dataset:=SQLQuery1;
+    GetDate(Year,Month,Day,WDay);
+
+    Exp.FileName := inttostr(Day)+inttostr(Month)+inttostr(Year)+'.xls';
+    Exp.Execute; // run the export
+
+    Exp.Free;
+    ExpSettings.Free;
+
+  {
+  frReport1.LoadFromFile('proba2.lrf');
+  frReport1.ShowReport;
+  if frReport1.PrepareReport then
+    frReport1.ExportTo(TfrHTMExportFilter, 'gsmobjects2.html');
+  IBConnection1.Close;
+  IBConnection1.Open;
+   }
+end;
+
+procedure TForm1.MenuItem89Click(Sender: TObject);
+begin
+  Form1.Obsluga:='ОТКЛЮЧИТЬ';
+  Form1.Osoba:='лист';
+  Form1.filename:='list.html';
+  Form1.AllObjectList();
 end;
 
 procedure TForm1.Panel1Click(Sender: TObject);
